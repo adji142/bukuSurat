@@ -1,0 +1,5 @@
+https://www.devexpress.com/Support/Center/Question/Details/T306569/connecting-to-mysql-and-setting-datasource-for-dxdatagrid
+
+https://js.devexpress.com/Demos/WidgetsGallery/Demo/DataGrid/RowEditingAndEditingEvents/jQuery/Light/
+
+https://www.devexpress.com/Support/Center/Question/Details/T323281/dxdatagrid-how-to-change-the-cell-value-on-the-fly-in-batch-edit-mode
