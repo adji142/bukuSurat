@@ -569,6 +569,142 @@ class Apps extends CI_Controller {
 	//  ============================ Pemusnahan surat ============================
 
 
+	//  ============================ Buku Agenda ============================
+	public function GetAgendaLookup()
+	{
+		$data = array('success' => false ,'message'=>array(),'data'=>array());
+
+		$SQL = '
+			SELECT 
+				a.NoAgenda, 
+				a.NomorSurat, 
+				a.AsalSurat, 
+				a.TanggalSurat, 
+				a.TglPelaksanaanSurat, 
+				a.JenisSurat,
+				b.TglAgenda,
+				b.Keterangan,
+				b.CreatedBy
+			FROM datasurat a
+			LEFT JOIN agendasurat b on a.NoAgenda = b.BaseRef
+			WHERE b.id IS NULL 
+		';
+
+		$rs = $this->db->query($SQL);
+		if ($rs) {
+			$data['success'] = true;
+			$data['data'] = $rs->result();
+		}
+		echo json_encode($data);
+	}
+
+	public function GetAgendaSurat()
+	{
+		$data = array('success' => false ,'message'=>array(),'data'=>array());
+
+		$TglAwal = $this->input->post('TglAwal');
+		$TglAkhir = $this->input->post('TglAkhir');
+
+		$SQL = "
+			SELECT 
+				a.id,
+				a.TglAgenda,
+				a.NamaCP,
+				a.NoCP,
+				a.LokasiAgenda,
+				a.CreatedBy,
+				b.NoAgenda,
+				b.TanggalSurat,
+				b.TglPelaksanaanSurat,
+				b.JenisSurat
+			FROM agendasurat a
+			LEFT JOIN datasurat b on a.BaseRef = b.NoAgenda
+			WHERE 1 =1 
+		";
+
+		if ($TglAwal != '') {
+			$SQL .= " AND a.WrapOutDate BETWEEN '$TglAwal' AND '$TglAkhir' ";
+		}
+		// var_dump($SQL);
+		$rs = $this->db->query($SQL);
+
+		if ($rs) {
+			$data['success'] = true;
+			$data['data'] = $rs->result();
+		}
+		echo json_encode($data);
+	}
+	public function CRUD_Agenda()
+	{
+		$data = array('success' => false ,'message'=>array(),'data'=>array());
+	
+		// Add parameter hire
+		$id = $this->input->post('id');
+		$TglAgenda = $this->input->post('TglAgenda');
+		$BaseRef = $this->input->post('BaseRef');
+		$Keterangan = $this->input->post('Keterangan');
+		$NamaCP = $this->input->post('NamaCP');
+		$NoCP = $this->input->post('NoCP');
+		$LokasiAgenda = $this->input->post('LokasiAgenda');
+
+		$CreatedOn = date("Y-m-d h:i:sa");
+		$CreatedBy = $this->session->userdata('NamaUser');
+
+		$formtype= $this->input->post('formtype');
+		// Add parameter hire
+	
+		$param = array(
+			'TglAgenda' => $TglAgenda,
+			'BaseRef' => $BaseRef,
+			'Keterangan' => $Keterangan,
+			'CreatedOn' => $CreatedOn,
+			'CreatedBy' => $CreatedBy,
+			'NamaCP' => $NamaCP,
+			'NoCP' => $NoCP,
+			'LokasiAgenda' => $LokasiAgenda,
+		);
+	
+		if ($formtype=='add') {
+			$rs = $this->ModelsExecuteMaster->ExecInsert($param,'agendasurat');
+			if ($rs) {
+				$data['success'] = true;
+			}
+			else{
+				$data['success'] = false;
+				$data['message'] = 'Gagal Melakukan Insert Data';
+			}
+		}
+		elseif ($formtype == 'edit') {
+			$rs = $this->ModelsExecuteMaster->ExecUpdate($param,array('id'=>$id),'agendasurat');
+			if ($rs) {
+				$data['success'] = true;
+			}
+			else{
+				$data['success'] = false;
+				$data['message'] = 'Gagal Melakukan Update Data';
+			}
+		}
+		elseif ($formtype=='delete') {
+			$SQL = 'DELETE FROM agendasurat WHERE id = '.$id;
+	
+			$rs = $this->db->query($SQL);
+			if ($rs) {
+				$data['success'] = true;
+			}
+			else{
+				$data['success'] = false;
+				$data['message'] = 'Gagal Melakukan Delete Data';
+			}
+		}
+		else{
+			$data['success'] = false;
+			$data['message'] = 'Invalid Form Type';
+		}
+	
+		echo json_encode($data);
+	}
+	//  ============================ Buku Agenda ============================
+
 
 	//  ============================ Laporan section ============================
 

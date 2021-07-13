@@ -11,11 +11,33 @@
  Target Server Version : 100406
  File Encoding         : 65001
 
- Date: 11/07/2021 09:21:51
+ Date: 13/07/2021 15:24:33
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for agendasurat
+-- ----------------------------
+DROP TABLE IF EXISTS `agendasurat`;
+CREATE TABLE `agendasurat`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `TglAgenda` datetime(0) NOT NULL,
+  `BaseRef` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `Keterangan` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `CreatedOn` datetime(6) NOT NULL,
+  `CreatedBy` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `NamaCP` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `NoCP` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `LokasiAgenda` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of agendasurat
+-- ----------------------------
+INSERT INTO `agendasurat` VALUES (1, '2021-07-13 00:00:00', 'M-20210700001', '-', '2021-07-13 03:23:39.000000', 'admin', 'asd', 'asd', 'asd');
 
 -- ----------------------------
 -- Table structure for datasurat
@@ -94,6 +116,7 @@ INSERT INTO `permission` VALUES (7, 'Lap. Pemusnahan Surat', 'rptPemusnahanSurat
 INSERT INTO `permission` VALUES (9, 'Laporan', NULL, 'icon-paper-clip', '0', b'1', b'0', 26, b'1', NULL, NULL, NULL);
 INSERT INTO `permission` VALUES (10, 'Lap. Surat Masuk', 'rptSuratMasuk', NULL, '9', b'1', b'0', 27, b'1', NULL, NULL, NULL);
 INSERT INTO `permission` VALUES (11, 'Lap. Surat Keluar', 'rptSuratKeluar', NULL, '9', b'1', b'0', 28, b'1', NULL, NULL, NULL);
+INSERT INTO `permission` VALUES (12, 'Buku Agenda', 'bukuagenda', NULL, '3', b'1', b'0', 14, b'1', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for permissionrole

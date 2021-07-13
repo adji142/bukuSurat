@@ -60,6 +60,7 @@ $route['klasifikasi'] = 'Home/klasifikasi';
 $route['suratmasuk'] = 'Home/suratmasuk';
 $route['suratkeluar'] = 'Home/suratkeluar';
 $route['pemusnahan'] = 'Home/pemusnahan';
+$route['bukuagenda'] = 'Home/bukuagenda';
 $route['rptSuratMasuk'] = 'Home/rptSuratMasuk';
 $route['rptSuratKeluar'] = 'Home/rptSuratKeluar';
 $route['rptPemusnahanSurat'] = 'Home/rptPemusnahanSurat';

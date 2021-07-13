@@ -47,6 +47,10 @@ class home extends CI_Controller {
 	{
 		$this->load->view('V_PemusnahanSurat');
 	}
+	public function bukuagenda()
+	{
+		$this->load->view('V_BukuAgenda');
+	}
 	public function rptSuratMasuk()
 	{
 		$this->load->view('Rpt_SuratMasuk');
