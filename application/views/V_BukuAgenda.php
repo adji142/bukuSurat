@@ -302,6 +302,22 @@
 		                allowEditing:false,
 		                visible : true
 		            },
+		            {
+		                dataField: "Keterangan",
+		                caption: "Keterangan",
+		                allowEditing:false,
+		                visible : true
+		            },
+		            {
+		            	dataField: "FileItem",
+		                caption : "View File",
+		                allowEditing : false,
+		                cellTemplate: function(cellElement, cellInfo) {
+		                	var html = "";
+		                	html += "<a target='_blank' href = '"+cellInfo.data.LinkFile+"'>View File</a>";
+		                	cellElement.append(html);
+		                }
+		            },
 		        ],
 		        onEditingStart: function(e) {
 		            GetData(e.data.id);

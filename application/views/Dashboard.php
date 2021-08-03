@@ -3,7 +3,7 @@
     require_once(APPPATH."views/parts/Sidebar.php");
     $active = 'dashboard';
 ?>
-<style type="text/css">
+<!-- <style type="text/css">
   #background{
     position:absolute;
     z-index:0;
@@ -21,7 +21,7 @@
     transform:rotate(300deg);
     -webkit-transform:rotate(300deg);
 }
-</style>
+</style> -->
 <!--main-container-part-->
 <div id="content">
 <!--breadcrumbs-->
@@ -32,8 +32,10 @@
 
     <div class="row-fluid">
       <div id="background">
-        <br><br><br><br><br><br><br><br><br><br><br><br>
-        <center><p id="bg-text">Demo Mode <br><br><br> <a id="bg-text" href="aistrick.com">aistrick.com</a></p></center>
+        <center><h1>Sistem Administrasi Pengarsipan Surat <br> Keluarahan Mojosongo</h1>
+          <br>
+          <img src="<?php echo base_url() ?>Assets/1.jpeg">
+        </center>
       </div>
       <!-- <center><h1>KLASIFIKASI PELANGGAN MENGGUNAKAN <br> METODE NAIVE BAYES</h1></center> -->
     </div>

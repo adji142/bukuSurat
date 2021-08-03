@@ -133,7 +133,9 @@ class Apps extends CI_Controller {
 		$rs = null;
 		$SQL = "SELECT * FROM datasurat a 
 					LEFT JOIN tklasifikasi b on a.KodeKlasifikasiSurat = b.id
-					where 1 = 1 AND a.JenisSurat = 'Masuk'
+					where 1 = 1 AND a.JenisSurat = 'Masuk' AND a.NoAgenda NOT IN (
+						SELECT BaseRef FROM pemusnahansurat
+					)
 				";
 		if ($NoAgenda == '') {
 			$rs = $this->db->query($SQL);
@@ -293,7 +295,9 @@ class Apps extends CI_Controller {
 		$rs = null;
 		$SQL = "SELECT * FROM datasurat a 
 					LEFT JOIN tklasifikasi b on a.KodeKlasifikasiSurat = b.id
-					where 1 = 1 AND a.JenisSurat = 'Keluar'
+					where 1 = 1 AND a.JenisSurat = 'Keluar' AND a.NoAgenda NOT IN (
+						SELECT BaseRef FROM pemusnahansurat
+					)
 				";
 		if ($NoAgenda == '') {
 			$rs = $this->db->query($SQL);
@@ -616,7 +620,9 @@ class Apps extends CI_Controller {
 				b.NoAgenda,
 				b.TanggalSurat,
 				b.TglPelaksanaanSurat,
-				b.JenisSurat
+				b.JenisSurat,
+				a.Keterangan,
+				b.LinkFile
 			FROM agendasurat a
 			LEFT JOIN datasurat b on a.BaseRef = b.NoAgenda
 			WHERE 1 =1 
