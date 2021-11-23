@@ -47,7 +47,7 @@
 		    		<div class="control-group">
 						<label class="control-label">No. Agenda :</label>
 						<div class="controls controls-row">
-				          <input type="text" class="span2 m-wrap" id="NoAgenda" name="NoAgenda" required="" placeholder="No. Agenda" readonly="">
+				          <input type="text" class="span2 m-wrap" id="NoAgenda" name="NoAgenda" required="" placeholder="No. Agenda" >
 				          <input type="hidden" class="span3 m-wrap" id="formtype" name="formtype" value="add">
 				        </div>
 					</div>
@@ -93,6 +93,12 @@
 						<label class="control-label">Isi Surat :</label>
 						<div class="controls controls-row">
 				          <input type="text" class="span2 m-wrap" id="IsiSurat" name="IsiSurat" required="" placeholder="Isi Surat">
+				        </div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Penerima Surat :</label>
+						<div class="controls controls-row">
+				          <input type="text" class="span2 m-wrap" id="ContactPerson" name="ContactPerson" required="" placeholder="Penerima Surat">
 				        </div>
 					</div>
 					<div class="control-group">
@@ -157,7 +163,7 @@
 	          dataType: "json",
 	          success: function (response) {
 	          	// bindGrid(response.data);
-	          	$('#NoAgenda').val(response.nomor);
+	          	//$('#NoAgenda').val(response.nomor);
 	          }
 	        });
         });
@@ -212,7 +218,7 @@
 			var TglPelaksanaanSurat = $('#TglPelaksanaanSurat').val();
 			var NomorSurat = $('#NomorSurat').val();
 			var IsiSurat = $('#IsiSurat').val();
-
+			var ContactPerson = $('#ContactPerson').val();
 		    var picture = $('#Attachment').prop('files')[0];
 		    var picture_base64 = $('#picture_base64').val();
 		    var formtype = $('#formtype').val();
@@ -282,6 +288,7 @@
 					$('#TglPelaksanaanSurat').val(v.TglPelaksanaanSurat);
 					$('#NomorSurat').val(v.NomorSurat);
 					$('#IsiSurat').val(v.IsiSurat);
+					$('#ContactPerson').val(v.ContactPerson);
 
 					$('#picture_base64').val(v.base64File);
 					$('#formtype').val("edit");
@@ -357,6 +364,11 @@
 		            {
 		                dataField: "IsiSurat",
 		                caption: "Isi Surat",
+		                allowEditing:false
+		            },
+		            {
+		                dataField: "ContactPerson",
+		                caption: "Penerima Surat",
 		                allowEditing:false
 		            },
 		            {

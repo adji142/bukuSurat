@@ -171,7 +171,7 @@ class Apps extends CI_Controller {
 		$IsiSurat = $this->input->post('IsiSurat');
 		// $LinkFile = $this->input->post('LinkFile');
 		$base64File = $this->input->post('picture_base64');
-
+		$ContactPerson = $this->input->post('ContactPerson');
 
 		$formtype = $this->input->post('formtype');
 
@@ -240,7 +240,8 @@ class Apps extends CI_Controller {
 			'base64File' => $base64File,
 			'TglPelaksanaanSurat'=> $TglPelaksanaanSurat,
 			'CreatedOn' => date("Y-m-d h:i:sa"),
-			'JenisSurat'=>'Masuk'
+			'JenisSurat'=>'Masuk',
+			'ContactPerson' => $ContactPerson
 		);
 
 		if ($formtype=='add') {
@@ -734,6 +735,7 @@ class Apps extends CI_Controller {
 				b.WrapOutDate,
 				b.Keterangan,
 				b.CreatedBy,
+				a.ContactPerson,
 				CASE WHEN b.WrapOutDate IS NOT NULL THEN 'Y' ELSE 'N' END WO
 			FROM datasurat a
 			LEFT JOIN pemusnahansurat b on a.NoAgenda = b.BaseRef

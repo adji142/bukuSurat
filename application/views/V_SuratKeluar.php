@@ -47,7 +47,7 @@
 		    		<div class="control-group">
 						<label class="control-label">No. Agenda :</label>
 						<div class="controls controls-row">
-				          <input type="text" class="span2 m-wrap" id="NoAgenda" name="NoAgenda" required="" placeholder="No. Agenda" readonly="">
+				          <input type="text" class="span2 m-wrap" id="NoAgenda" name="NoAgenda" required="" placeholder="No. Agenda" >
 				          <input type="hidden" class="span3 m-wrap" id="formtype" name="formtype" value="add">
 				        </div>
 					</div>
@@ -151,7 +151,7 @@
 	          dataType: "json",
 	          success: function (response) {
 	          	// bindGrid(response.data);
-	          	$('#NoAgenda').val(response.nomor);
+	          	// $('#NoAgenda').val(response.nomor);
 	          }
 	        });
         });

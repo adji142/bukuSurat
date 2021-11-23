@@ -277,6 +277,12 @@
 		                visible : true
 		            },
 		            {
+		                dataField: "ContactPerson",
+		                caption: "Penerima Surat",
+		                allowEditing:false,
+		                visible : true
+		            },
+		            {
 		                dataField: "WO",
 		                caption: "Dimusnahkan",
 		                allowEditing:false,
